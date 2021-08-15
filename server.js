@@ -10,15 +10,9 @@ const io = socketio(server);
 io.on("connection", (socket) => {
   console.log("connected with socket id = ", socket.id);
 
-  socket.on("msg_send", (data) => {
-    // sends the message to every connected clients
-    // io.emit("msg_rcvd", data);
-
-    // sends back the message to same socket
-    // socket.emit("msg_rcvd", data);
-
-    // sends the message to all clients (except self)
-    socket.broadcast.emit("msg_rcvd", data);
+  socket.on("login", (data) => {
+    socket.join(data.username);
+    socket.emit("logged_in");
   });
 });
 

@@ -20,3 +20,7 @@ $("#btnSendMsg").click(() => {
     msg: $("#inpNewMsg").val(),
   });
 });
+
+socket.on("msg_rcvd", (data) => {
+  $("#ulMsgs").append($("<li>").text(data.msg));
+});
